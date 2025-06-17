@@ -1,0 +1,76 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Listing";
+
+    var urgentUnmetItems = Model.ListItems.Where(i => i.Status == "Urgent Unmet").ToList();
+    var unmetItems = Model.ListItems.Where(i => i.Status == "Unmet").ToList();
+    var metItems = Model.ListItems.Where(i => i.Status == "Met").ToList();
+    var otherItems = Model.ListItems
+    .Where(i => i.Status != "Urgent Unmet" && i.Status != "Unmet" && i.Status != "Met")
+    .ToList();
+}
+
+@if (Model.ListItems.Any())
+{
+    if (urgentUnmetItems.Any())
+    {
+        <h2>Urgent Unmet</h2>
+        <ul>
+            @foreach (var item in urgentUnmetItems)
+            {
+                <li>
+                    <strong>@item.Title</strong><br />
+                    @item.Description
+                </li>
+            }
+        </ul>
+    }
+
+    if (unmetItems.Any())
+    {
+        <h2>Unmet</h2>
+        <ul>
+            @foreach (var item in unmetItems)
+            {
+                <li>
+                    <strong>@item.Title</strong><br />
+                    @item.Description
+                </li>
+            }
+        </ul>
+    }
+
+    if (metItems.Any())
+    {
+        <h2>Met</h2>
+        <ul>
+            @foreach (var item in metItems)
+            {
+                <li>
+                    <strong>@item.Title</strong><br />
+                    @item.Description
+                </li>
+            }
+        </ul>
+    }
+
+    if (otherItems.Any())
+    {
+        <h2>Other</h2>
+        <ul>
+            @foreach (var item in otherItems)
+            {
+                <li>
+                    <strong>@item.Title</strong><br />
+                    <em>Status: @item.Status</em>
+                    @item.Description<br />
+                </li>
+            }
+        </ul>
+    }
+}
+else
+{
+    <p>No items found.</p>
+}

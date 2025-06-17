@@ -12,6 +12,8 @@ public class IndexModel : PageModel
 
     public List<ListItemModel> ListItems { get; set; } = new();
 
+    public string EmailTo => _config["EmailTo"] ?? "";
+
     public IndexModel(GraphServiceClient graphClient, IConfiguration config)
     {
         _graphClient = graphClient;

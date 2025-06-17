@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "Listing";
 
-    var urgentUnmetItems = Model.ListItems.Where(i => i.Status == "Urgent Unmet").ToList();
-    var unmetItems = Model.ListItems.Where(i => i.Status == "Unmet").ToList();
-    var metItems = Model.ListItems.Where(i => i.Status == "Met").ToList();
+    var urgentUnmetItems = Model.ListItems.Where(i => i.Status == "URGENT Needs").ToList();
+    var unmetItems = Model.ListItems.Where(i => i.Status == "Unmet Needs").ToList();
+    var metItems = Model.ListItems.Where(i => i.Status == "Needs Already Met").ToList();
     var otherItems = Model.ListItems
-    .Where(i => i.Status != "Urgent Unmet" && i.Status != "Unmet" && i.Status != "Met")
+    .Where(i => i.Status != "URGENT Needs" && i.Status != "Unmet Needs" && i.Status != "Needs Already Met")
     .ToList();
 }
 
@@ -15,13 +15,16 @@
 {
     if (urgentUnmetItems.Any())
     {
-        <h2>Urgent Unmet</h2>
+        <h2>‼ URGENT Needs</h2>
         <ul>
             @foreach (var item in urgentUnmetItems)
             {
                 <li>
                     <strong>@item.Title</strong><br />
-                    @item.Description
+                    <span style="whitespace: pre">@Html.Raw(item.Description)</span>
+                    <button onclick="location.href='mailto:@Model.EmailTo?subject=URGENT Need: @item.Title'">
+                        I/we can help
+                    </button>
                 </li>
             }
         </ul>
@@ -29,13 +32,16 @@
 
     if (unmetItems.Any())
     {
-        <h2>Unmet</h2>
+        <h2>Unmet Needs</h2>
         <ul>
             @foreach (var item in unmetItems)
             {
                 <li>
                     <strong>@item.Title</strong><br />
-                    @item.Description
+                    <span style="whitespace: pre">@Html.Raw(item.Description)</span>
+                    <button onclick="location.href='mailto:@Model.EmailTo?subject=Need: @item.Title'">
+                        I/we can help
+                    </button>
                 </li>
             }
         </ul>
@@ -43,13 +49,13 @@
 
     if (metItems.Any())
     {
-        <h2>Met</h2>
+        <h2>Needs Already Met</h2>
         <ul>
             @foreach (var item in metItems)
             {
                 <li>
                     <strong>@item.Title</strong><br />
-                    @item.Description
+                    <span style="whitespace: pre">@Html.Raw(item.Description)</span>
                 </li>
             }
         </ul>
@@ -63,8 +69,8 @@
             {
                 <li>
                     <strong>@item.Title</strong><br />
-                    <em>Status: @item.Status</em>
-                    @item.Description<br />
+                    <em>Status: @item.Status</em><br />
+                    <span style="whitespace: pre">@Html.Raw(item.Description)</span>
                 </li>
             }
         </ul>

@@ -12,7 +12,7 @@ public class IndexModel : PageModel
 
     public List<ListItemModel> ListItems { get; set; } = new();
 
-    public string EmailTo => _config["EmailTo"] ?? "";
+    public string LinkTemplate => _config["LinkTemplate"] ?? "";
 
     public IndexModel(GraphServiceClient graphClient, IConfiguration config)
     {
@@ -36,8 +36,11 @@ public class IndexModel : PageModel
         ListItems = items?.Value?.Select(i => new ListItemModel
         {
             Title = i.Fields!.AdditionalData.TryGetValue("Title", out var title) ? title?.ToString() : null,
+            Status = i.Fields!.AdditionalData.TryGetValue("board_x0020_choice", out var status) ? status?.ToString() : null,
             Description = i.Fields!.AdditionalData.TryGetValue("Description", out var desc) ? desc?.ToString() : null,
-            Status = i.Fields!.AdditionalData.TryGetValue("board_x0020_choice", out var status) ? status?.ToString() : null
+            HostingDatesLength = i.Fields!.AdditionalData.TryGetValue("Hosting_x0020_dates_x002f_length", out var dates) ? dates?.ToString() : null,
+            LocationDetails = i.Fields!.AdditionalData.TryGetValue("Location_x0020_details_x003a_", out var loc) ? loc?.ToString() : null,
+            ImportantDetails = i.Fields!.AdditionalData.TryGetValue("Important_x0020_Details_x003a_", out var important) ? important?.ToString() : null
         }).ToList() ?? [];
     }
 }

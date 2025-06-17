@@ -15,16 +15,21 @@
 {
     if (urgentUnmetItems.Any())
     {
-        <h2>‼ URGENT Needs</h2>
+        <h2 style="color: #cc0000">‼ URGENT Needs</h2>
         <ul>
             @foreach (var item in urgentUnmetItems)
             {
                 <li>
-                    <strong>@item.Title</strong><br />
-                    <span style="whitespace: pre">@Html.Raw(item.Description)</span>
-                    <button onclick="location.href='mailto:@Model.EmailTo?subject=URGENT Need: @item.Title'">
-                        I/we can help
+                    <h3>@item.Title</h3>
+                    @Html.Raw(item.Description)<br />
+                    <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
+                    <b>Location Details:</b> @item.LocationDetails<br />
+                    <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
+                    <button style="background-color: #77dd77" onclick="location.href='@item.GetLink(@Model.LinkTemplate)'">
+                        I can help
                     </button>
+                    <br />
+                    <br />
                 </li>
             }
         </ul>
@@ -32,16 +37,21 @@
 
     if (unmetItems.Any())
     {
-        <h2>Unmet Needs</h2>
+        <h2 style="color: #cc0000">Unmet Needs</h2>
         <ul>
             @foreach (var item in unmetItems)
             {
                 <li>
-                    <strong>@item.Title</strong><br />
-                    <span style="whitespace: pre">@Html.Raw(item.Description)</span>
-                    <button onclick="location.href='mailto:@Model.EmailTo?subject=Need: @item.Title'">
-                        I/we can help
+                    <h3>@item.Title</h3>
+                    @Html.Raw(item.Description)<br />
+                    <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
+                    <b>Location Details:</b> @item.LocationDetails<br />
+                    <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
+                    <button style="background-color: #77dd77" onclick="location.href='@item.GetLink(@Model.LinkTemplate)'">
+                        I can help
                     </button>
+                    <br />
+                    <br />
                 </li>
             }
         </ul>
@@ -49,13 +59,17 @@
 
     if (metItems.Any())
     {
-        <h2>Needs Already Met</h2>
+        <h2 style="color: #00cc00">Needs Already Met</h2>
         <ul>
             @foreach (var item in metItems)
             {
                 <li>
-                    <strong>@item.Title</strong><br />
-                    <span style="whitespace: pre">@Html.Raw(item.Description)</span>
+                    <h3>@item.Title</h3>
+                    @Html.Raw(item.Description)<br />
+                    <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
+                    <b>Location Details:</b> @item.LocationDetails<br />
+                    <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
+                    <br />
                 </li>
             }
         </ul>
@@ -63,14 +77,22 @@
 
     if (otherItems.Any())
     {
-        <h2>Other</h2>
+        <h2 style="color: #cc0000">Other</h2>
         <ul>
             @foreach (var item in otherItems)
             {
                 <li>
-                    <strong>@item.Title</strong><br />
+                    <h3>@item.Title</h3>
                     <em>Status: @item.Status</em><br />
-                    <span style="whitespace: pre">@Html.Raw(item.Description)</span>
+                    @Html.Raw(item.Description)<br />
+                    <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
+                    <b>Location Details:</b> @item.LocationDetails<br />
+                    <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
+                    <button style="background-color: #77dd77" onclick="location.href='@item.GetLink(@Model.LinkTemplate)'">
+                        I can help
+                    </button>
+                    <br />
+                    <br />
                 </li>
             }
         </ul>

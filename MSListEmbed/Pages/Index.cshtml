@@ -16,11 +16,12 @@
     if (urgentUnmetItems.Any())
     {
         <h2 style="color: #cc0000">‼ URGENT Needs</h2>
+        <p>These needs must be met within the next 72 hours.</p>
         <ul>
             @foreach (var item in urgentUnmetItems)
             {
                 <li>
-                    <h3>@item.Title</h3>
+                    <h4>@item.Title</h4>
                     @Html.Raw(item.Description)<br />
                     <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
                     <b>Location Details:</b> @item.LocationDetails<br />
@@ -37,12 +38,13 @@
 
     if (unmetItems.Any())
     {
+        <hr />
         <h2 style="color: #cc0000">Unmet Needs</h2>
         <ul>
             @foreach (var item in unmetItems)
             {
                 <li>
-                    <h3>@item.Title</h3>
+                    <h4>@item.Title</h4>
                     @Html.Raw(item.Description)<br />
                     <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
                     <b>Location Details:</b> @item.LocationDetails<br />
@@ -59,12 +61,13 @@
 
     if (metItems.Any())
     {
+        <hr />
         <h2 style="color: #00cc00">Needs Already Met</h2>
         <ul>
             @foreach (var item in metItems)
             {
                 <li>
-                    <h3>@item.Title</h3>
+                    <h4>@item.Title</h4>
                     @Html.Raw(item.Description)<br />
                     <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
                     <b>Location Details:</b> @item.LocationDetails<br />
@@ -77,12 +80,13 @@
 
     if (otherItems.Any())
     {
+        <hr />
         <h2 style="color: #cc0000">Other</h2>
         <ul>
             @foreach (var item in otherItems)
             {
                 <li>
-                    <h3>@item.Title</h3>
+                    <h4>@item.Title</h4>
                     <em>Status: @item.Status</em><br />
                     @Html.Raw(item.Description)<br />
                     <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />

@@ -5,19 +5,19 @@
 
     var emergencyNeeds = Model.ListItems
     .Where(i => i.Status == "A: Emergency Needs")
-    .OrderBy(i => i.DisplayOrder)
+    .OrderBy(i => i.DisplayOrder).ThenBy(i => i.Title)
     .ToList();
     var currentNeeds = Model.ListItems
     .Where(i => i.Status == "B: Current Needs")
-    .OrderBy(i => i.DisplayOrder)
+    .OrderBy(i => i.DisplayOrder).ThenBy(i => i.Title)
     .ToList();
     var needsAlreadyMet = Model.ListItems
     .Where(i => i.Status == "C: Needs Already Met")
-    .OrderBy(i => i.DisplayOrder)
+    .OrderBy(i => i.DisplayOrder).ThenBy(i => i.Title)
     .ToList();
     var otherItems = Model.ListItems
     .Where(i => i.Status != "A: Emergency Needs" && i.Status != "B: Current Needs" && i.Status != "C: Needs Already Met")
-    .OrderBy(i => i.DisplayOrder)
+    .OrderBy(i => i.DisplayOrder).ThenBy(i => i.Title)
     .ToList();
 }
 

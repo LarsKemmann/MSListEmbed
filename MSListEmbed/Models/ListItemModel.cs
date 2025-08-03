@@ -8,7 +8,7 @@ namespace MSListEmbed.Models
         public string? HostingDatesLength { get; set; }
         public string? LocationDetails { get; set; }
         public string? ImportantDetails { get; set; }
-        public int DisplayOrder { get; set; }
+        public decimal DisplayOrder { get; set; }
 
         public string GetLink(string linkTemplate)
         {

@@ -27,105 +27,81 @@
     {
         <h2 style="color: #cc0000">‼ EMERGENCY Needs</h2>
         <p>These needs must be met within the next 72 hours.</p>
-        <ul>
-            @foreach (var item in emergencyNeeds)
-            {
-                <li>
-                    <details>
-                        <summary>
-                            <h4>@item.Title</h4>
-                            @Html.Raw(item.Description)<br />
-                        </summary>
-                        <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
-                        <b>Location Details:</b> @item.LocationDetails<br />
-                        <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
-                        <button style="background-color: #77dd77" onclick="location.href='@item.GetLink(@Model.LinkTemplate)'">
-                            I can help
-                        </button>
-                    </details>
-                    <br />
-                    <br />
-                </li>
-            }
-        </ul>
+        @foreach (var item in emergencyNeeds)
+        {
+            <details>
+                <summary>
+                    <span style="font-weight: bold; font-size: x-large;">@item.Title</span><br />
+                    @Html.Raw(item.Description)
+                </summary>
+                <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
+                <b>Location Details:</b> @item.LocationDetails<br />
+                <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
+                <button style="background-color: #77dd77" onclick="location.href='@item.GetLink(@Model.LinkTemplate)'">
+                    I can help
+                </button>
+            </details>
+        }
     }
 
     if (currentNeeds.Any())
     {
         <hr />
         <h2 style="color: #cc0000">Current Needs</h2>
-        <ul>
-            @foreach (var item in currentNeeds)
-            {
-                <li>
-                    <details>
-                        <summary>
-                            <h4>@item.Title</h4>
-                            @Html.Raw(item.Description)<br />
-                        </summary>
-                        <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
-                        <b>Location Details:</b> @item.LocationDetails<br />
-                        <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
-                        <button style="background-color: #77dd77" onclick="location.href='@item.GetLink(@Model.LinkTemplate)'">
-                            I can help
-                        </button>
-                    </details>
-                    <br />
-                    <br />
-                </li>
-            }
-        </ul>
+        @foreach (var item in emergencyNeeds)
+        {
+            <details>
+                <summary>
+                    <span style="font-weight: bold; font-size: x-large;">@item.Title</span><br />
+                    @Html.Raw(item.Description)
+                </summary>
+                <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
+                <b>Location Details:</b> @item.LocationDetails<br />
+                <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
+                <button style="background-color: #77dd77" onclick="location.href='@item.GetLink(@Model.LinkTemplate)'">
+                    I can help
+                </button>
+            </details>
+        }
     }
 
     if (needsAlreadyMet.Any())
     {
         <hr />
         <h2 style="color: #00cc00">Needs Already Met</h2>
-        <ul>
-            @foreach (var item in needsAlreadyMet)
-            {
-                <li>
-                    <details>
-                        <summary>
-                            <h4>@item.Title</h4>
-                            @Html.Raw(item.Description)<br />
-                        </summary>
-                        <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
-                        <b>Location Details:</b> @item.LocationDetails<br />
-                        <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
-                    </details>
-                    <br />
-                    <br />
-                </li>
-            }
-        </ul>
+        @foreach (var item in emergencyNeeds)
+        {
+            <details>
+                <summary>
+                    <span style="font-weight: bold; font-size: x-large;">@item.Title</span><br />
+                    @Html.Raw(item.Description)
+                </summary>
+                <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
+                <b>Location Details:</b> @item.LocationDetails<br />
+                <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
+            </details>
+        }
     }
 
     if (otherItems.Any())
     {
         <hr />
         <h2 style="color: #cc0000">Other</h2>
-        <ul>
-            @foreach (var item in otherItems)
-            {
-                <li>
-                    <details>
-                        <summary>
-                            <h4>@item.Title</h4>
-                            @Html.Raw(item.Description)<br />
-                        </summary>
-                        <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
-                        <b>Location Details:</b> @item.LocationDetails<br />
-                        <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
-                        <button style="background-color: #77dd77" onclick="location.href='@item.GetLink(@Model.LinkTemplate)'">
-                            I can help
-                        </button>
-                    </details>
-                    <br />
-                    <br />
-                </li>
-            }
-        </ul>
+        @foreach (var item in emergencyNeeds)
+        {
+            <details>
+                <summary>
+                    <span style="font-weight: bold; font-size: x-large;">@item.Title</span><br />
+                    @Html.Raw(item.Description)
+                </summary>
+                <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
+                <b>Location Details:</b> @item.LocationDetails<br />
+                <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
+                <button style="background-color: #77dd77" onclick="location.href='@item.GetLink(@Model.LinkTemplate)'">
+                    I can help
+                </button>
+            </details>
+        }
     }
 }
 else

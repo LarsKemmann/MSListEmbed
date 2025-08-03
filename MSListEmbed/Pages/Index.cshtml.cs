@@ -40,7 +40,8 @@ public class IndexModel : PageModel
             Description = i.Fields!.AdditionalData.TryGetValue("Description", out var desc) ? desc?.ToString() : null,
             HostingDatesLength = i.Fields!.AdditionalData.TryGetValue("Hosting_x0020_dates_x002f_length", out var dates) ? dates?.ToString() : null,
             LocationDetails = i.Fields!.AdditionalData.TryGetValue("Location_x0020_details_x003a_", out var loc) ? loc?.ToString() : null,
-            ImportantDetails = i.Fields!.AdditionalData.TryGetValue("Important_x0020_Details_x003a_", out var important) ? important?.ToString() : null
+            ImportantDetails = i.Fields!.AdditionalData.TryGetValue("Important_x0020_Details_x003a_", out var important) ? important?.ToString() : null,
+            DisplayOrder = i.Fields!.AdditionalData.TryGetValue("DisplayOrder", out var order) && int.TryParse(order?.ToString(), out var displayOrder) ? displayOrder : 0,
         }).ToList() ?? [];
     }
 }

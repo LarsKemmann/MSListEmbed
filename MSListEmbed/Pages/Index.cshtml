@@ -3,26 +3,37 @@
 @{
     ViewData["Title"] = "Listing";
 
-    var urgentUnmetItems = Model.ListItems.Where(i => i.Status == "URGENT Needs").ToList();
-    var unmetItems = Model.ListItems.Where(i => i.Status == "Unmet Needs").ToList();
-    var metItems = Model.ListItems.Where(i => i.Status == "Needs Already Met").ToList();
+    var emergencyNeeds = Model.ListItems
+    .Where(i => i.Status == "A: Emergency Needs")
+    .OrderBy(i => i.DisplayOrder)
+    .ToList();
+    var currentNeeds = Model.ListItems
+    .Where(i => i.Status == "B: Current Needs")
+    .OrderBy(i => i.DisplayOrder)
+    .ToList();
+    var needsAlreadyMet = Model.ListItems
+    .Where(i => i.Status == "C: Needs Already Met")
+    .OrderBy(i => i.DisplayOrder)
+    .ToList();
     var otherItems = Model.ListItems
-    .Where(i => i.Status != "URGENT Needs" && i.Status != "Unmet Needs" && i.Status != "Needs Already Met")
+    .Where(i => i.Status != "A: Emergency Needs" && i.Status != "B: Current Needs" && i.Status != "C: Needs Already Met")
+    .OrderBy(i => i.DisplayOrder)
     .ToList();
 }
 
 @if (Model.ListItems.Any())
 {
-    if (urgentUnmetItems.Any())
+    if (emergencyNeeds.Any())
     {
-        <h2 style="color: #cc0000">‼ URGENT Needs</h2>
+        <h2 style="color: #cc0000">‼ EMERGENCY Needs</h2>
         <p>These needs must be met within the next 72 hours.</p>
         <ul>
-            @foreach (var item in urgentUnmetItems)
+            @foreach (var item in emergencyNeeds)
             {
                 <li>
                     <h4>@item.Title</h4>
                     @Html.Raw(item.Description)<br />
+                    @* TODO: Make each need collapsible down to the title and description. *@
                     <b>Hosting Dates/Length:</b> @item.HostingDatesLength<br />
                     <b>Location Details:</b> @item.LocationDetails<br />
                     <b>Important Details:</b> @Html.Raw(item.ImportantDetails)<br />
@@ -36,12 +47,12 @@
         </ul>
     }
 
-    if (unmetItems.Any())
+    if (currentNeeds.Any())
     {
         <hr />
         <h2 style="color: #cc0000">Current Needs</h2>
         <ul>
-            @foreach (var item in unmetItems)
+            @foreach (var item in currentNeeds)
             {
                 <li>
                     <h4>@item.Title</h4>
@@ -59,12 +70,12 @@
         </ul>
     }
 
-    if (metItems.Any())
+    if (needsAlreadyMet.Any())
     {
         <hr />
         <h2 style="color: #00cc00">Needs Already Met</h2>
         <ul>
-            @foreach (var item in metItems)
+            @foreach (var item in needsAlreadyMet)
             {
                 <li>
                     <h4>@item.Title</h4>

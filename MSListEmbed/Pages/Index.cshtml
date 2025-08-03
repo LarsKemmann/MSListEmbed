@@ -48,7 +48,7 @@
     {
         <hr />
         <h2 style="color: #cc0000">Current Needs</h2>
-        @foreach (var item in emergencyNeeds)
+        @foreach (var item in currentNeeds)
         {
             <details>
                 <summary>
@@ -69,7 +69,7 @@
     {
         <hr />
         <h2 style="color: #00cc00">Needs Already Met</h2>
-        @foreach (var item in emergencyNeeds)
+        @foreach (var item in needsAlreadyMet)
         {
             <details>
                 <summary>
@@ -87,7 +87,7 @@
     {
         <hr />
         <h2 style="color: #cc0000">Other</h2>
-        @foreach (var item in emergencyNeeds)
+        @foreach (var item in otherItems)
         {
             <details>
                 <summary>
